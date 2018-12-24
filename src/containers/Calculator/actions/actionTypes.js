@@ -1,0 +1,2 @@
+export const CLICK_BUTTON = 'CLICK_BUTTON';
+export const CLEAR_DISPLAY = 'CLEAR_DISPLAY';

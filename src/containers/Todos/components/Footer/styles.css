@@ -1,0 +1,45 @@
+.footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: inherit;
+        width: 480px;
+        background-color: white;
+        padding: 10px 0 10px 0;
+        border-top: 1px solid rgba(176, 176, 176, 0.5);
+        box-shadow: 0 14px 45px rgba(0, 0, 0, 0.22), 0 18px 45px rgba(0, 0, 0, 0.22);
+}
+
+.filter-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+button { 
+    border: none;
+    background-color: white;
+    border-radius: 8px;
+}
+
+button:hover {
+    border: 2px solid saddlebrown;
+}
+
+button:active{
+    border: 2px solid saddlebrown;
+}
+
+.button__filter{
+    padding: 0 7px 0 7px;
+}
+
+.button__end {
+    margin-right: 5px;
+}
+
+.items_left {
+    margin-left: 10px;
+}
