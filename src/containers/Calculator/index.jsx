@@ -42,6 +42,7 @@ class CalculatorClass extends Component {
             case '/':
             case '+':
                 this.repeatedOperator(value, last, change);
+                this.props.clickButton({change});
                 break;
             case '=':
                 if (this.operators.includes(last)) {
@@ -80,12 +81,10 @@ class CalculatorClass extends Component {
             if (!(regEx.test(this.props.display))) {
                 change.display += value;
                 change.isFinished = false;
-                this.props.clickButton({change});
             } else {
                 let preResult = eval(this.props.display).toString();
                 change.display = preResult + value;
                 change.isFinished = false;
-                this.props.clickButton({change});
             }
         } else {
             this.operators.map(operator => {
@@ -94,7 +93,6 @@ class CalculatorClass extends Component {
                     cut += value;
                     change.display = cut;
                     change.isFinished = false;
-                    this.props.clickButton({change});
                 }
             })
         }
