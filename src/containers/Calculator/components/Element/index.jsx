@@ -3,7 +3,7 @@ import '../../styles.css';
 
 const Element = ({value, onClick}) => (
     <div
-        className="element"
+        className="element-calculator"
         onClick={() => onClick(value)}
         value={value}
     >

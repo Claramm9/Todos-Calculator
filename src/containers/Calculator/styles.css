@@ -20,7 +20,7 @@ h1 {
     border-radius: 25px;
     border: 1px solid black;
   }
-  .element{
+  .element-calculator{
     display:block;
     border-radius: 25px;
     border: 1px solid black;
@@ -32,11 +32,11 @@ h1 {
     font-size: 25px;
   }
 
-  .element:hover{
+  .element-calculator:hover{
       background-color: lavender;
   }
 
-  .element[data-size="2"] {
+  .element-calculator[data-size="2"] {
       width: 160px;
   }
 
