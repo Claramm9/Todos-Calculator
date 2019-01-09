@@ -1,5 +1,5 @@
-import { Record, List } from 'immutable';
 import { TodoModel } from './TodoModel';
+import { Record, List } from 'immutable';
 
 export const TodosModel = Record ({
     todos: List(),

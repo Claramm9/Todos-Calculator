@@ -1,5 +1,5 @@
-import { CLICK_BUTTON, CLEAR_DISPLAY } from '../actions/actionTypes';
 import { initialStateCalculator } from '../models';
+import { CLICK_BUTTON, CLEAR_DISPLAY } from '../actions/actionTypes';
 
 const calculatorReducer = (state = initialStateCalculator, action) => {
     switch (action.type){

@@ -1,7 +1,5 @@
-// the reducer returns the next state
-// Take two parameters: state and action
-import { ADD_TODO, RESET_ALL, FILTER_TODO, CLEAR_TODOS_COMPLETED, COMPLETE_TODO } from '../actions/actionTypes';
 import { initialStateTodos } from '../models';
+import { ADD_TODO, RESET_ALL, FILTER_TODO, CLEAR_TODOS_COMPLETED, COMPLETE_TODO } from '../actions/actionTypes';
 
 const todosReducer = (state = initialStateTodos, action) => {
     console.log(action)

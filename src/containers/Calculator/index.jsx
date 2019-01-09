@@ -1,10 +1,10 @@
+import './styles.css';
+import '../../styles.css';
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import Element from './components/Element';
 import Display from './components/Display';
-import { connect } from 'react-redux';
 import { clickButton, clearDisplay } from './actions/calculatorActions';
-import './styles.css';
-import '../../styles.css';
 
 class CalculatorClass extends Component {
     constructor(props) {

@@ -1,5 +1,5 @@
-import React from 'react';
 import './styles.css';
+import React from 'react';
 
 const TodoList = ({ todos, onCompleted }) => (
     <div style={{ width: '100%' }}>

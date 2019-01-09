@@ -1,7 +1,7 @@
-import React from 'react';
 import './styles.css';
-import Header from './Header';
+import React from 'react';
 import Todos from '../Todos';
+import Header from './Header';
 import Calculator from '../Calculator';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 

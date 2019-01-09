@@ -2,8 +2,8 @@
 // the state of the application lives as a single, immutable object within the store
 // as soon as the store receives an action it triggers a reducer
 import { createStore } from 'redux';
-import rootReducer from '../reducers';
 import initialState from "../models";
+import rootReducer from '../reducers';
 
 const store = createStore(
     rootReducer,
