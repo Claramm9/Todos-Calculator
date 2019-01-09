@@ -1,6 +1,12 @@
-const initialState = {
-    todos: [],
-    filter: 'all'
-}
+import { Record, List } from 'immutable';
+import { TodoModel } from './TodoModel';
 
-export default initialState
+export const TodosModel = Record ({
+    todos: List(),
+    filter: 'all'
+});
+
+export const initialStateTodos = new TodosModel({
+    todos: List().unshift(new TodoModel()),
+    filter: 'all'
+})

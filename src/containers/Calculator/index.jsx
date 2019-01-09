@@ -2,23 +2,10 @@ import React, { Component } from 'react';
 import Element from './components/Element';
 import Display from './components/Display';
 import { connect } from 'react-redux';
-import { clickButton, clickOperator, clearDisplay } from './actions/calculatorActions';
+import { clickButton, clearDisplay } from './actions/calculatorActions';
 import './styles.css';
 import '../../styles.css';
 
-function mapDispatchToProps(dispatch) {
-    return {
-        clickButton: display => dispatch(clickButton(display)),
-        clearDisplay: () => dispatch(clearDisplay())
-    };
-}
-
-const mapStateToProps = ({ Calculator }) => {
-    return {
-        display: Calculator.display,
-        isFinished: Calculator.isFinished
-    };
-};
 class CalculatorClass extends Component {
     constructor(props) {
         super(props);
@@ -136,6 +123,21 @@ class CalculatorClass extends Component {
         );
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        clickButton: display => dispatch(clickButton(display)),
+        clearDisplay: () => dispatch(clearDisplay())
+    };
+}
+
+const mapStateToProps = ({ Calculator }) => {
+    return {
+        display: Calculator.get('display'),
+        isFinished: Calculator.get('isFinished')
+    };
+};
+
 const Calculator = connect(mapStateToProps, mapDispatchToProps)(CalculatorClass);
 
 export default Calculator;

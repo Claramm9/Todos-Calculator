@@ -1,27 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import '../../styles.css';
-import TodoList from './components/TodoList';
+import { Map } from 'immutable';
+import { connect } from 'react-redux';
 import Footer from './components/Footer';
+import React, { Component } from 'react';
+import TodoList from './components/TodoList';
 import Modal from '../../components/Modal/Modal';
 import { addTodo, completeTodo, resetTodos, filterTodo, clearCompleted } from './actions/todosActions';
-
-function mapDispatchToProps(dispatch) {
-    return {
-        addTodo: todo => dispatch(addTodo(todo)),
-        completeTodo: todos => dispatch(completeTodo(todos)),
-        resetTodos: () => dispatch(resetTodos()),
-        filterTodo: filter => dispatch(filterTodo(filter)),
-        clearCompleted: todos => dispatch(clearCompleted(todos))
-    };
-}
-
-const mapStateToProps = ({ Todos }) => {
-    return { 
-        todos: Todos.todos,
-        filter: Todos.filter
-    };
-};
 
 class ConnectedTodos extends Component {
     constructor(props) {
@@ -40,11 +24,11 @@ class ConnectedTodos extends Component {
 
     onKeyPress = (event) => {
         if(event.which === 13 && this.state.inputValue !== '') {
-            const todo = {
-                id: this.props.todos.length + 1,
+            const todo = Map({
+                id: this.props.todos.size + 1,
                 title: this.state.inputValue,
                 isCompleted: false
-            }
+            });
             this.props.addTodo(todo);
             this.setState(() => ({
                 inputValue: ''
@@ -58,19 +42,19 @@ class ConnectedTodos extends Component {
 
     isCompleted = (todo) => {
         const { filter } = this.props
+
         if(filter === 'active'){
-            return todo.isCompleted === false;
+            return todo.get('isCompleted') === false;
         }else if(filter === 'completed'){
-            return todo.isCompleted === true;
+            return todo.get('isCompleted') === true;
         }else if(filter === 'all'){
             return true;
         }
     }
 
     onCompleted = (id) => {
-        debugger
         const todos = this.props.todos.map(todo => {
-            return todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+            return todo.get('id') === id ? todo.set('isCompleted', !(todo.get('isCompleted'))) : todo
         });
         this.props.completeTodo(todos);
     }
@@ -80,11 +64,12 @@ class ConnectedTodos extends Component {
     }
 
     clearCompleted = () => {
-        const todos = this.props.todos.filter(todo => todo.isCompleted === false)
+        const todos = this.props.todos.filter(todo => todo.get('isCompleted') === false)
         this.props.clearCompleted(todos);
     }
 
     render() {
+        
         const todosFiltered = this.props.todos.filter(this.isCompleted);
         
         return(
@@ -109,10 +94,11 @@ class ConnectedTodos extends Component {
                             onKeyPress={this.onKeyPress}
                         ></input>
                     </div>
-                    <TodoList todos={todosFiltered} onCompleted={this.onCompleted}/>
+                    <TodoList todos={todosFiltered} onCompleted={this.onCompleted} />
+
                 </div>
                 {<Footer 
-                    item={todosFiltered.length}
+                    item={todosFiltered.size}
                     onSend={this.sendData}
                     onModal={this.clearCompleted}/>}
             </div>
@@ -120,6 +106,21 @@ class ConnectedTodos extends Component {
         )
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addTodo: todo => dispatch(addTodo(todo)),
+        completeTodo: todos => dispatch(completeTodo(todos)),
+        resetTodos: () => dispatch(resetTodos()),
+        filterTodo: filter => dispatch(filterTodo(filter)),
+        clearCompleted: todos => dispatch(clearCompleted(todos))
+    };
+}
+
+const mapStateToProps = ({ Todos }) => ({ 
+    todos: Todos.get('todos'),
+    filter: Todos.get('filter')
+})
 
 const Todos = connect(mapStateToProps, mapDispatchToProps)(ConnectedTodos);
 
